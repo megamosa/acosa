@@ -1,0 +1,12 @@
+<?php
+/**
+ * @var $block \Magento\Backend\Block\Template
+ * @var $helper \MagoArab\OrderActions\Helper\Data
+ */
+$helper = $this->helper('MagoArab\OrderActions\Helper\Data');
+$roleId = $helper->getCurrentUserRoleId();
+?>
+<script>
+    window.magoarabOrderActions = window.magoarabOrderActions || {};
+    window.magoarabOrderActions.permissions = <?= json_encode($helper->getOrderActionsWithPermissions($roleId)) ?>;
+</script>

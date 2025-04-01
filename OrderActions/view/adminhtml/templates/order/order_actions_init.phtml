@@ -1,0 +1,20 @@
+<?php
+/**
+ * @var $block \Magento\Backend\Block\Template
+ * @var $helper \MagoArab\OrderActions\Helper\Data
+ */
+$helper = $this->helper('MagoArab\OrderActions\Helper\Data');
+$roleId = $helper->getCurrentUserRoleId();
+?>
+<?php if ($helper->isEnabled()): ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "magoarabOrderActions": {
+            "isEnabled": <?= $helper->isEnabled() ? 'true' : 'false' ?>,
+            "allowedActions": <?= json_encode($helper->getOrderActionsWithPermissions($roleId)) ?>
+        }
+    }
+}
+</script>
+<?php endif; ?>

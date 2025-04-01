@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var $block \Magento\Backend\Block\Template
+ * @var $helper \MagoArab\OrderActions\Helper\Data
+ */
+$helper = $this->helper('MagoArab\OrderActions\Helper\Data');
+$roleId = $helper->getCurrentUserRoleId();
+?>
+<?php if ($helper->isEnabled()): ?>
+<script>
+    // Initialize DOM observer as early as possible, before RequireJS loads
+    window.magoarabOrderActionsObserver.init({
+        permissions: <?= json_encode($helper->getOrderActionsWithPermissions($roleId)) ?>
+    });
+</script>
+<?php endif; ?>

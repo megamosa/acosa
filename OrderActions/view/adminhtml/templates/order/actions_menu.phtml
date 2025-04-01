@@ -1,0 +1,79 @@
+<?php
+/**
+ * @var $block \MagoArab\OrderActions\Block\Adminhtml\Order\Grid\ActionsMenu
+ */
+?>
+<?php if ($block->isModuleEnabled()): ?>
+<script type="text/javascript">
+require(['jquery', 'domReady!'], function($) {
+    // Override the default action menu with our custom filtered menu
+    $(document).ready(function() {
+        // Wait for the page to fully load
+        setTimeout(function() {
+            // Get the actions we want to allow
+            var allowedActions = <?= json_encode($block->getActionsWithPermissions()) ?>;
+            
+            // Function to process dropdown options
+            function processDropdown($dropdown) {
+                if (!$dropdown.length) return;
+                
+                // For each dropdown item
+                $dropdown.find('li').each(function() {
+                    var $item = $(this);
+                    var text = $item.text().trim();
+                    var actionId = text.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                    
+                    // Check if this action is in our allowedActions list and if it's allowed
+                    var found = false;
+                    $.each(allowedActions, function(key, action) {
+                        // Try to match by ID or title
+                        if ((action.id === actionId || 
+                             action.title.toLowerCase() === text.toLowerCase() || 
+                             text.toLowerCase().indexOf(action.title.toLowerCase()) !== -1) && 
+                            !action.allowed) {
+                            // If found but not allowed, hide it
+                            $item.hide();
+                            found = true;
+                            return false; // break the loop
+                        }
+                    });
+                });
+            }
+            
+            // Find all action dropdown menus in the grid
+            var $actionMenus = $('.admin__data-grid-wrap .action-select-wrap .action-menu');
+            $actionMenus.each(function() {
+                processDropdown($(this));
+            });
+            
+            // Also intercept when a new menu is opened
+            $(document).on('click', '.admin__data-grid-wrap .action-select', function() {
+                var $menu = $(this).next('.action-menu');
+                processDropdown($menu);
+            });
+            
+            // Process the actions dropdown at the top of the grid
+            var $actionsDropdown = $('#sales_order_grid_massaction-select + ul');
+            processDropdown($actionsDropdown);
+            
+            // Observe DOM changes to catch dynamically added menus
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        for (var i = 0; i < mutation.addedNodes.length; i++) {
+                            var $node = $(mutation.addedNodes[i]);
+                            if ($node.hasClass('action-menu') || $node.find('.action-menu').length) {
+                                processDropdown($node.hasClass('action-menu') ? $node : $node.find('.action-menu'));
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Start observing the document body for DOM changes
+            observer.observe(document.body, { childList: true, subtree: true });
+        }, 1000);
+    });
+});
+</script>
+<?php endif; ?>

@@ -1,0 +1,56 @@
+<?php
+/**
+ * @var $block \MagoArab\OrderActions\Block\Adminhtml\User\Role\Tab\DynamicResources
+ */
+?>
+<?php if ($block->isModuleEnabled()): ?>
+<div id="magoarab-dynamic-resources" style="display: none;">
+    <?php $roleId = $block->getRoleId(); ?>
+    <?php $dynamicActions = $block->getDynamicOrderActions(); ?>
+    
+    <?php if (!empty($dynamicActions)): ?>
+        <fieldset class="fieldset admin__fieldset">
+            <legend class="legend admin__legend">
+                <span><?= $block->escapeHtml(__('Dynamic Order Actions')) ?></span>
+            </legend>
+            <div class="admin__field-control">
+                <p><?= $block->escapeHtml(__('These actions were detected automatically from UI elements. Configure permissions for these order actions:')) ?></p>
+            </div>
+            
+            <div class="admin__fieldset-wrapper-content">
+                <div class="admin__fieldset">
+                    <?php foreach ($dynamicActions as $actionId => $action): ?>
+                        <div class="admin__field admin__field-option">
+                            <input type="checkbox" 
+                                id="order_action_dynamic_<?= $block->escapeHtmlAttr($actionId) ?>" 
+                                name="order_actions[<?= $block->escapeHtmlAttr($actionId) ?>]" 
+                                value="1" 
+                                <?= $block->isActionAllowedForRole($roleId, $action['resource_id']) ? 'checked="checked"' : '' ?> 
+                                class="admin__control-checkbox"
+                            />
+                            <label for="order_action_dynamic_<?= $block->escapeHtmlAttr($actionId) ?>" class="admin__field-label">
+                                <?= $block->escapeHtml($action['title']) ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </fieldset>
+    <?php endif; ?>
+</div>
+
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            // Append to role info tab
+            var dynamicResources = $('#magoarab-dynamic-resources');
+            var orderActionsFieldset = $('#magoarab-order-actions');
+            
+            if (orderActionsFieldset.length && dynamicResources.length) {
+                dynamicResources.show();
+                dynamicResources.appendTo(orderActionsFieldset);
+            }
+        });
+    });
+</script>
+<?php endif; ?>

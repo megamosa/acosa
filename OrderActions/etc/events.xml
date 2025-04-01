@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="layout_generate_blocks_after">
+        <observer name="magoarab_orderactions_collect_actions" instance="MagoArab\OrderActions\Observer\CollectOrderActions" />
+    </event>
+    <event name="sales_order_grid_collection_load_before">
+        <observer name="magoarab_orderactions_filter_order_actions" instance="MagoArab\OrderActions\Observer\FilterOrderActions" />
+    </event>
+</config>

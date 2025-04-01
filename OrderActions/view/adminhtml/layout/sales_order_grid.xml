@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="formkey"/>
+    <head>
+        <css src="MagoArab_OrderActions::css/order-actions.css"/>
+    </head>
+    <body>
+        <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" name="magoarab.order.actions.permissions" template="MagoArab_OrderActions::order/order_actions_permissions.phtml" />
+        </referenceContainer>
+    </body>
+</page>

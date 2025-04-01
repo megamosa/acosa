@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Plugin to filter order actions based on role permissions -->
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+        <plugin name="magoarab_orderactions_filter_actions" type="MagoArab\OrderActions\Plugin\OrderActionPlugin" sortOrder="10" />
+    </type>
+    
+    <!-- Plugin to filter grid actions -->
+    <type name="Magento\Sales\Block\Adminhtml\Order\Grid">
+        <plugin name="magoarab_orderactions_filter_grid" type="MagoArab\OrderActions\Plugin\OrderGridPlugin" sortOrder="10" />
+    </type>
+    
+    <!-- Plugin to filter massaction options -->
+    <type name="Magento\Sales\Block\Adminhtml\Order\Grid\Massaction">
+        <plugin name="magoarab_orderactions_filter_massactions" type="MagoArab\OrderActions\Plugin\OrderGridPlugin" sortOrder="10" />
+    </type>
+    
+    <!-- Plugin to filter action menu -->
+    <type name="Magento\Backend\Block\Widget\Grid\Extended">
+        <plugin name="magoarab_orderactions_filter_menu" type="MagoArab\OrderActions\Plugin\OrderGridPlugin" sortOrder="10" />
+    </type>
+    
+    <!-- Plugin to add custom permission fields to admin roles -->
+    <type name="Magento\User\Block\Role\Edit\Tab\Info">
+        <plugin name="magoarab_orderactions_role_edit" type="MagoArab\OrderActions\Plugin\AdminRoleSavePlugin" sortOrder="10" />
+    </type>
+    
+    <!-- Plugin to save custom role permissions -->
+    <type name="Magento\User\Model\ResourceModel\Role">
+        <plugin name="magoarab_orderactions_save_permissions" type="MagoArab\OrderActions\Observer\SaveActionPermissions" sortOrder="10" />
+    </type>
+    
+    <!-- Custom preferences -->
+    <preference for="MagoArab\OrderActions\Model\OrderActionsInterface" type="MagoArab\OrderActions\Model\OrderActions" />
+</config>

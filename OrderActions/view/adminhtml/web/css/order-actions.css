@@ -1,0 +1,35 @@
+/**
+ * MagoArab OrderActions CSS
+ */
+
+/* Style for hidden actions in dropdowns */
+.admin__action-dropdown-menu li.magoarab-hidden-action,
+.action-menu li.magoarab-hidden-action,
+.actions-split .dropdown-menu li.magoarab-hidden-action,
+.action-select-wrap .action-menu-item.magoarab-hidden-action,
+.item.magoarab-hidden-action,
+li.magoarab-hidden-action,
+.action-menu-item.magoarab-hidden-action {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* Ensure hidden items don't take up space */
+.admin__data-grid-action-bookmarks .action-dropdown-menu-item.magoarab-hidden-action {
+    display: none !important;
+}
+
+/* Forcefully hide elements with inline style */
+[style*="display: none"] {
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}

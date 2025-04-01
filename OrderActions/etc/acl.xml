@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="MagoArab_OrderActions::config" title="MagoArab Order Actions Configuration" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Sales::sales">
+                    <resource id="Magento_Sales::sales_operation">
+                        <resource id="Magento_Sales::sales_order">
+                            <resource id="MagoArab_OrderActions::sales_order_actions" title="Order Actions Control">
+                                <resource id="MagoArab_OrderActions::action_view" title="View Order" />
+                                <resource id="MagoArab_OrderActions::action_cancel" title="Cancel Order" />
+                                <resource id="MagoArab_OrderActions::action_hold" title="Hold Order" />
+                                <resource id="MagoArab_OrderActions::action_unhold" title="Unhold Order" />
+                                <resource id="MagoArab_OrderActions::action_invoice" title="Invoice Order" />
+                                <resource id="MagoArab_OrderActions::action_ship" title="Ship Order" />
+                                <resource id="MagoArab_OrderActions::action_reorder" title="Reorder" />
+                                <resource id="MagoArab_OrderActions::action_edit" title="Edit Order" />
+                                <resource id="MagoArab_OrderActions::action_creditmemo" title="Credit Memo" />
+                                <resource id="MagoArab_OrderActions::action_print" title="Print" />
+                                <resource id="MagoArab_OrderActions::action_print_invoice" title="Print Invoices" />
+                                <resource id="MagoArab_OrderActions::action_print_shipment" title="Print Shipments" />
+                                <resource id="MagoArab_OrderActions::action_print_order" title="Print Orders" />
+                                <resource id="MagoArab_OrderActions::action_print_all" title="Print All" />
+                                <resource id="MagoArab_OrderActions::action_add_comment" title="Add Comment" />
+                                <resource id="MagoArab_OrderActions::action_change_status" title="Change Status" />
+                                <resource id="MagoArab_OrderActions::action_print_packing" title="Print Packing Slip" />
+                                <resource id="MagoArab_OrderActions::action_pdf_invoices" title="PDF Invoices" />
+                                <resource id="MagoArab_OrderActions::action_pdf_shipments" title="PDF Shipments" />
+                                <resource id="MagoArab_OrderActions::action_pdf_creditmemos" title="PDF Credit Memos" />
+                                <resource id="MagoArab_OrderActions::action_pdf_docs" title="PDF Documents" />
+                                <resource id="MagoArab_OrderActions::action_delete" title="Delete" />
+                                <resource id="MagoArab_OrderActions::action_create_shipping_label" title="Create Shipping Label" />
+                                <resource id="MagoArab_OrderActions::action_close" title="Close" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

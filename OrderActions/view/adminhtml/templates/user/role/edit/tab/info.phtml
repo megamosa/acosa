@@ -1,0 +1,49 @@
+<?php
+/**
+ * @var $block \Magento\User\Block\Role\Edit\Tab\Info
+ * @var $helper \MagoArab\OrderActions\Helper\Data
+ */
+$helper = $this->helper('MagoArab\OrderActions\Helper\Data');
+?>
+<div class="entry-edit form-inline">
+    <?= $block->getFormHtml() ?>
+</div>
+<?php if ($helper->isEnabled()): ?>
+<div class="entry-edit form-inline">
+    <fieldset class="fieldset admin__fieldset" id="magoarab-order-actions">
+        <legend class="legend admin__legend">
+            <span><?= $block->escapeHtml(__('Order Actions Permissions')) ?></span>
+        </legend>
+        <br>
+        <div class="admin__field">
+            <p><?= $block->escapeHtml(__('Configure which order actions are available for this role:')) ?></p>
+        </div>
+        
+        <?php $roleId = $block->getRequest()->getParam('id'); ?>
+        <?php $actions = $helper->getOrderActionsWithPermissions($roleId); ?>
+        
+        <div class="admin__fieldset-wrapper-content">
+            <div class="admin__fieldset">
+                <?php foreach ($actions as $actionCode => $actionData): ?>
+                    <div class="admin__field">
+                        <div class="admin__field-label">
+                            <label for="order_action_<?= $block->escapeHtmlAttr($actionCode) ?>">
+                                <?= $block->escapeHtml($actionData['title']) ?>
+                            </label>
+                        </div>
+                        <div class="admin__field-control">
+                            <input type="checkbox" 
+                                id="order_action_<?= $block->escapeHtmlAttr($actionCode) ?>" 
+                                name="order_actions[<?= $block->escapeHtmlAttr($actionCode) ?>]" 
+                                value="1" 
+                                <?= (isset($actionData['allowed']) && $actionData['allowed']) ? 'checked="checked"' : '' ?> 
+                                class="admin__control-checkbox"
+                            />
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<?php endif; ?>

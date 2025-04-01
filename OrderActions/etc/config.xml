@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magoarab_orderactions>
+            <general>
+                <enabled>1</enabled>
+                <actions_list>view,cancel,hold,unhold,invoice,ship,reorder,edit,creditmemo</actions_list>
+            </general>
+        </magoarab_orderactions>
+    </default>
+</config>

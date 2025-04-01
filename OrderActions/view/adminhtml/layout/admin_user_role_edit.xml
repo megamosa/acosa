@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="adminhtml.user.role.edit.tab.info">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">MagoArab_OrderActions::user/role/edit/tab/info.phtml</argument>
+                </action>
+            </referenceBlock>
+            <!-- Add block for dynamic resources -->
+            <block class="MagoArab\OrderActions\Block\Adminhtml\User\Role\Tab\DynamicResources" name="adminhtml.user.role.dynamic.resources" template="MagoArab_OrderActions::user/role/edit/tab/dynamic_resources.phtml" after="-" />
+        </referenceContainer>
+    </body>
+</page>
